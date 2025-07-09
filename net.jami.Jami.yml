@@ -7,19 +7,35 @@ sdk: org.kde.Sdk
 command: jami
 
 finish-args:
+  # Share IPC namespace with host
   - --share=ipc
-  - --share=network
-  - --socket=fallback-x11
+  # Display windows with Wayland (fallback to X11 otherwise)
   - --socket=wayland
+  - --socket=fallback-x11
+  # Audio access (includes ALSA)
   - --socket=pulseaudio
+  # Network access
+  - --share=network
+  # Provides access to all devices
   - --device=all
   - --allow=per-app-dev-shm
+  # Inhibit sleep
+  - --system-talk-name=org.freedesktop.login1
+  - --talk-name=org.gnome.SessionManager
+  - --talk-name=org.freedesktop.PowerManagement
+  - --talk-name=org.freedesktop.ScreenSaver
+  # Notifs & tray icons
+  - --talk-name=org.gnome.Mutter.IdleMonitor
+  - --talk-name=org.kde.StatusNotifierWatcher
   - --talk-name=com.canonical.AppMenu.Registrar
+  - --talk-name=com.canonica.indicator.application
+  - --talk-name=org.ayatana.indiciator.application
+  - --talk-name=com.canonical.Unity
   - --talk-name=org.freedesktop.Notifications
   - --talk-name=org.freedesktop.ScreenSaver
-  - --talk-name=org.kde.StatusNotifierWatcher
-  - --filesystem=xdg-download
-  - --own-name=cx.ring.Ring
+  # Provide access to home directory
+  - --filesystem=home
+  # Qt environment variables 
   - --env=QML_IMPORT_PATH=/app/qml
   - --env=QTWEBENGINEPROCESS_PATH=/app/bin/QtWebEngineProcess
 
@@ -44,8 +60,10 @@ cleanup:
 
 cleanup-commands:
   - /app/cleanup-BaseApp.sh
-rename-icon: jami
 
+# Rename the icon to net.jami.Jami 
+# (requirement for .desktop file)
+rename-icon: jami
 
 modules:
   - name: jami-client-qt
@@ -63,9 +81,9 @@ modules:
         tag: stable/20250613.0
         commit: b15d692a0e8bce708a904f4b808641e5a8086c37
       - type: patch
-        path: files/jami-client-qt_fix-build.patch
-      # - type: patch
-      #   path: files/jami-client-qt_fix-icon.patch
+        path: patches/jami-client-qt-patches/jami-client-qt_fix-build.patch
+      - type: patch
+        path: patches/jami-client-qt-patches/jami-client-qt_fix-icon.patch
     x-checker-data:
       - type: git
         tag-pattern: ^stable\/([\d.]+)$

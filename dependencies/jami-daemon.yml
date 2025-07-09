@@ -15,4 +15,4 @@ sources:
     url: https://git.jami.net/savoirfairelinux/jami-daemon.git
     commit: edfa4fa623e73a01b8a3cfefed7c9626a35cf4de
   - type: patch
-    path: ../files/jami-daemon_replace-static.patch
+    path: ../patches/jami-daemon-patches/jami-daemon_replace-static.patch
