@@ -1,0 +1,8 @@
+name: asio
+config-opts:
+  - --prefix=/app
+  - --without-boost
+sources:
+  - type: archive
+    url: https://sourceforge.net/projects/asio/files/asio/1.28.1%20(Stable)/asio-1.28.1.tar.gz
+    sha256: eef0eddce419827876f4929c6d7523e010528031e5289ec57914e89fb9ab9d8d

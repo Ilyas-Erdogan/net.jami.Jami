@@ -1,0 +1,10 @@
+name: qrencode
+buildsystem: cmake-ninja
+config-opts:
+  - -DCMAKE_BUILD_TYPE=Release
+  - -DWITH_TOOLS=NO
+  - -DBUILD_SHARED_LIBS=OFF
+sources:
+  - type: archive
+    url: https://github.com/fukuchi/libqrencode/archive/refs/tags/v4.1.1.tar.gz
+    sha512: 584106e7bcaaa1ef2efe63d653daad38d4ff436eb4b185a1db3c747169c1ffa74149c3b1329bb0b8ae007903db0a7034aabf135cc196d91a37b5c61348154a65 

@@ -1,0 +1,7 @@
+/+junk
+/.flatpak-builder
+/builddir
+/build
+/repo
+.directory
+/shared-modules
