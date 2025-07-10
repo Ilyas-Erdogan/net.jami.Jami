@@ -3,7 +3,6 @@ buildsystem: meson
 config-opts:
   - -Dbuildtype=release
   - -Dtests=false
-  - -Dlibdir=lib
 sources:
   - type: archive
     url: https://github.com/open-source-parsers/jsoncpp/archive/refs/tags/1.9.6.tar.gz

@@ -33,8 +33,7 @@ finish-args:
   - --talk-name=com.canonical.Unity
   - --talk-name=org.freedesktop.Notifications
   - --talk-name=org.freedesktop.ScreenSaver
-  # Provide access to home directory
-  - --filesystem=home
+  - --no-talk-name=org.freedesktop.portal.FileChooser
   # Qt environment variables 
   - --env=QML_IMPORT_PATH=/app/qml
   - --env=QTWEBENGINEPROCESS_PATH=/app/bin/QtWebEngineProcess
@@ -67,8 +66,7 @@ rename-icon: jami
 
 modules:
   - name: jami-client-qt
-    buildsystem: cmake
-    disable-submodules: true
+    buildsystem: cmake-ninja
     builddir: true
     config-opts:
       - -DCMAKE_BUILD_TYPE=Release
@@ -83,7 +81,7 @@ modules:
       - type: patch
         path: patches/jami-client-qt-patches/jami-client-qt_fix-build.patch
       - type: patch
-        path: patches/jami-client-qt-patches/jami-client-qt_fix-icon.patch
+        path: patches/jami-client-qt-patches/jami-client-qt_fix-metainfo-and-desktop.patch
     x-checker-data:
       - type: git
         tag-pattern: ^stable\/([\d.]+)$
